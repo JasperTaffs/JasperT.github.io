@@ -101,13 +101,15 @@
       padding: 0 clamp(1rem, 5vw, 2rem) 1.5rem;
     }
     .wip-inner {
-      display: flex; align-items: center; gap: 1rem;
+      display: flex; flex-direction: column; gap: 0.55rem;
       padding: 0.9rem 1.25rem;
       background: var(--surface);
       border: 1px solid var(--border);
       border-left: 3px solid var(--accent);
       border-radius: 0 var(--radius) var(--radius) 0;
     }
+    .wip-row { display: flex; align-items: center; gap: 1rem; }
+    .wip-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
     .wip-dot { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; flex-shrink: 0; animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
     .wip-text { font-size: 0.9rem; color: var(--muted); }
@@ -291,8 +293,11 @@ const SITE_DATA = {
     { value: "Leeds", label: "University" }
   ],
 
-  /* Shown in the "currently working on" banner */
-  currentWork: "Hydroelectric Motor — capturing energy from the ocean while under sail",
+  /* Shown in the "currently working on" banner. Add as many as you like — each becomes its own line. */
+  currentWork: [
+    "Hydroelectric Motor — capturing energy from the ocean while under sail",
+    "UKSEDS Mars Rover — leading structural design as Head of Structures"
+  ],
 
   bio: [
     "I'm a Mechanical Engineering MEng student at the University of Leeds with a passion for combining hands-on design with real-world engineering problems.",
@@ -312,9 +317,7 @@ const SITE_DATA = {
     { name: "Sustainability",         icon: "🌱" }
   ],
 
-  /* WORK EXPERIENCE / PLACEMENTS — TODO: replace with your real roles.
-     Recruiters weight this heavily, so this section is worth filling in properly
-     even if it's a part-time job, vacation scheme, or society leadership role. */
+  /* WORK EXPERIENCE / PLACEMENTS */
   experience: [
     {
       role: "Head of Structures",
@@ -351,18 +354,14 @@ const SITE_DATA = {
     }
   ],
 
-  /* CERTIFICATIONS & LICENCES — TODO: replace with real ones.
-     Common ones worth adding if you have them: full UK driving licence,
-     IOSH/NEBOSH health & safety, CSCS card, forklift/workshop inductions,
-     software certificates (SolidWorks CSWA, MATLAB), first aid. */
+  /* CERTIFICATIONS & LICENCES */
   certifications: [
     { name: "Full UK Driving Licence", issuer: "DVLA", date: "2022" },
     { name: "Learning Python", issuer: "Linkedin Learning", date: "July 2026" },
     { name: "Python Object-Oriented Programming", issuer: "Linkedin Learning", date: "August 2026" }
   ],
 
-  /* AWARDS & ACHIEVEMENTS — TODO: replace with real ones.
-     Scholarships, competition placings, Dean's List, published work, etc. */
+  /* AWARDS & ACHIEVEMENTS */
   awards: [
     { name: "Julian Wolchover Design and Technology ", detail: "At school received for A-level design for outstanding product", date: "2023" },
     { name: "Gold Duke of Edinburght", detail: "Completed Gold DofE through various volunteering and tenacious effort", date: "2025" }
@@ -576,7 +575,7 @@ const SITE_DATA = {
   /* HERO */
   document.getElementById('hero-eyebrow').textContent = d.university;
   document.getElementById('hero-name').textContent = d.name;
-  document.getElementById('hero-sub').textContent = d.role + '- building things that matter.';
+  document.getElementById('hero-sub').textContent = d.role + ' — building things that matter.';
   document.getElementById('hero-actions').innerHTML = `
     <a class="btn btn-primary" href="#projects">View projects</a>
     <a class="btn btn-outline" href="${d.cvUrl}" target="_blank" rel="noopener" download>Download CV</a>
@@ -599,8 +598,13 @@ const SITE_DATA = {
   /* WIP banner */
   document.getElementById('wip-banner').innerHTML = `
     <div class="wip-inner">
-      <div class="wip-dot"></div>
-      <p class="wip-text"><strong>Currently working on:</strong> ${d.currentWork}</p>
+      <span class="wip-label">Currently working on</span>
+      ${d.currentWork.map(item => `
+        <div class="wip-row">
+          <div class="wip-dot"></div>
+          <p class="wip-text">${item}</p>
+        </div>
+      `).join('')}
     </div>
   `;
 
