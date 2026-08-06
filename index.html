@@ -317,12 +317,12 @@ const SITE_DATA = {
      even if it's a part-time job, vacation scheme, or society leadership role. */
   experience: [
     {
-      role: "TODO: Job Title",
-      org: "TODO: Company / Organisation",
-      dates: "TODO: Mon YYYY – Mon YYYY",
+      role: "Head of Structures",
+      org: "Project Orion UKSED competition",
+      dates: "June 2025 - Current",
       bullets: [
-        "TODO: What you did, framed as an outcome — e.g. 'Reduced assembly time by 15% by redesigning a jig.'",
-        "TODO: A second concrete achievement or responsibility."
+        "Grown the organisation from 5 to over 40 people to compete in an European competition to design a Mars Rover",
+        "Supported a team of 8 people as Head of structures to produce a CAD design of a Mars Rover outer shell and manufactured the design reducing the weight by ~10% from initial design"
       ]
     }
     /* ADD MORE:
@@ -340,14 +340,14 @@ const SITE_DATA = {
     {
       qualification: "MEng Mechanical Engineering",
       institution: "University of Leeds",
-      dates: "2022 – 2026",
-      detail: "TODO: add expected classification and any standout modules"
+      dates: "2023 – 2027",
+      detail: "On course for a 1st Classification averaging 74%"
     },
     {
-      qualification: "TODO: A-Levels / IB / equivalent",
-      institution: "TODO: School / College name",
-      dates: "TODO: 2020 – 2022",
-      detail: "TODO: subjects and grades, e.g. Maths (A*), Physics (A), Design Tech (A)"
+      qualification: "A-Levels",
+      institution: "Alleyn's School, Dulwich",
+      dates: "2021-2023",
+      detail: "Maths (A*), Design and Technology (A*), Further Maths (A), Physics (A)"
     }
   ],
 
@@ -356,31 +356,30 @@ const SITE_DATA = {
      IOSH/NEBOSH health & safety, CSCS card, forklift/workshop inductions,
      software certificates (SolidWorks CSWA, MATLAB), first aid. */
   certifications: [
-    { name: "TODO: e.g. Full UK Driving Licence", issuer: "TODO", date: "TODO" },
-    { name: "TODO: e.g. SolidWorks CSWA", issuer: "TODO: Dassault Systèmes", date: "TODO" }
+    { name: "Full UK Driving Licence", issuer: "DVLA", date: "2022" },
+    { name: "Learning Python", issuer: "Linkedin Learning", date: "July 2026" },
+    { name: "Python Object-Oriented Programming", issuer: "Linkedin Learning", date: "August 2026" }
   ],
 
   /* AWARDS & ACHIEVEMENTS — TODO: replace with real ones.
      Scholarships, competition placings, Dean's List, published work, etc. */
   awards: [
-    { name: "TODO: e.g. Departmental Scholarship", detail: "TODO: brief context", date: "TODO" }
+    { name: "Julian Wolchover Design and Technology ", detail: "At school received for A-level design for outstanding product", date: "2023" },
+    { name: "Gold Duke of Edinburght", detail: "Completed Gold DofE through various volunteering and tenacious effort", date: "2025" }
   ],
 
   /* PROJECTS */
   projects: [
-    {
-      id: "hydro",
-      title: "Hydroelectric Motor",
-      status: "ongoing",
-      category: "Energy",
-      description: "A hydroelectric motor placed in a dinghy towed behind a sailing boat. The system captures energy while underway and stores it in batteries, which can power the dinghy as an electric outboard or provide electricity to the parent vessel — reducing emissions and increasing efficiency at sea.",
-      images: [
-        "assets/assem.JPG",
-        "assets/updatedhydro.jpg",
-        "assets/IMG_0422.JPEG"
-      ],
-      coverImage: "assets/updatedhydro.jpg"
-    },
+    // {
+    //   id: "Teng",
+    //   title: "Triboelectric Nanogenerator - Dissertation (Publishing)",
+    //   status: "ongoing",
+    //   category: "Energy",
+    //   description: "For my dissertation triboelectric nanogenerators were tested using a custom testing rig to see the viability to extract renewable energy from ocean",
+    //   images: [
+    //   ],
+    //   coverImage: ""
+    // },
     {
       id: "v6",
       title: "V6 Engine Model",
@@ -577,7 +576,7 @@ const SITE_DATA = {
   /* HERO */
   document.getElementById('hero-eyebrow').textContent = d.university;
   document.getElementById('hero-name').textContent = d.name;
-  document.getElementById('hero-sub').textContent = d.role + '';
+  document.getElementById('hero-sub').textContent = d.role + '- building things that matter.';
   document.getElementById('hero-actions').innerHTML = `
     <a class="btn btn-primary" href="#projects">View projects</a>
     <a class="btn btn-outline" href="${d.cvUrl}" target="_blank" rel="noopener" download>Download CV</a>
