@@ -187,7 +187,7 @@
     .carousel { position: relative; margin: 1.25rem 0; border-radius: 10px; overflow: hidden; background: #F0F4F8; }
     .carousel-track { display: flex; transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
     .carousel-slide { min-width: 100%; display: flex; align-items: center; justify-content: center; height: 320px; }
-    .carousel-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .carousel-slide img, .carousel-slide video { max-width: 100%; max-height: 100%; object-fit: contain; }
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(255,255,255,0.9); border: 1px solid var(--border);
@@ -658,13 +658,15 @@ const SITE_DATA = {
   const modalInner = document.getElementById('modal-inner');
   let currentSlide = 0;
 
+  function isVideo(src) {
+    return /\.(mp4|mov|webm|m4v)$/i.test(src);
+  }
+
   function openModal(p) {
     currentSlide = 0;
-    const slides = p.images.map(src =>
-      `<div class="carousel-slide"><img src="${src}" alt="${p.title}" loading="lazy" /></div>`
-    ).join('');
-    const dots = p.images.map((_,i) =>
-      `<div class="carousel-dot${i===0?' active':''}" data-i="${i}"></div>`
+    const slides = p.images.map(src => isVideo(src)
+      ? `<div class="carousel-slide"><video src="${src}" controls playsinline preload="metadata"></video></div>`
+      : `<div class="carousel-slide"><img src="${src}" alt="${p.title}" loading="lazy" /></div>`
     ).join('');
 
     modalInner.innerHTML = `
@@ -689,6 +691,7 @@ const SITE_DATA = {
       document.getElementById('carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
       document.querySelectorAll('.carousel-dot').forEach((dot, i) =>
         dot.classList.toggle('active', i === currentSlide));
+      document.querySelectorAll('.carousel-slide video').forEach(v => v.pause());
     }
 
     if (p.images.length > 1) {
@@ -715,7 +718,11 @@ const SITE_DATA = {
       if (prevBtn) prevBtn.click();
     }
   });
-  function closeModal() { backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+  function closeModal() {
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    document.querySelectorAll('.carousel-slide video').forEach(v => v.pause());
+  }
 
   /* EXPERIENCE timeline */
   const timeline = document.getElementById('timeline');
